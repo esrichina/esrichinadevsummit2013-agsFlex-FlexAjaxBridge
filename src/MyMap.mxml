@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:esri="http://www.esri.com/2008/ags"
+			   xmlns:bridge="bridge.*"
+			   pageTitle="AddMap">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.esri.ags.events.MapEvent;
+			import mx.controls.Button;
+			
+			public function switchMap():void
+			{
+				if(mytilelayer.url=="http://localhost:7080/PBS/rest/services/world/MapServer")
+				{
+					mytilelayer.url="http://localhost:7080/PBS/rest/services/china/MapServer";
+				}
+				else
+				{
+					mytilelayer.url="http://localhost:7080/PBS/rest/services/world/MapServer"
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<bridge:FABridge/>
+	</fx:Declarations>
+	
+	<esri:Map id="myMap" 
+			  level="3" 
+			  zoomSliderVisible="false"
+			  scaleBarVisible="false"
+			  wrapAround180="true">
+		<esri:ArcGISTiledMapServiceLayer id="mytilelayer" url="http://localhost:7080/PBS/rest/services/world/MapServer"/>
+		<esri:GraphicsLayer id="mygraphicsLayer"/>
+	</esri:Map>
+	
+</s:Application>
